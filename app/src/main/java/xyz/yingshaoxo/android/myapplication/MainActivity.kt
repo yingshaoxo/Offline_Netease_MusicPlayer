@@ -3,14 +3,18 @@ package xyz.yingshaoxo.android.myapplication
 import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
+import android.content.pm.PackageManager
 import android.media.MediaPlayer
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.support.v4.app.ActivityCompat
 import android.support.v4.app.NotificationCompat
+import android.support.v4.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.util.*
+import android.Manifest
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +23,19 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        // get permission
+        // import android.Manifest
+        if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+
+            ActivityCompat.requestPermissions(this,
+                    arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 999)
+
+            Thread.sleep(7 * 1000)
+        }
 
 
         var path_name = Environment.getExternalStorageDirectory().toString() + "/netease/cloudmusic/Music"
@@ -70,7 +87,7 @@ class MainActivity : AppCompatActivity() {
                 this,
                 0,
                 intent,
-                PendingIntent.FLAG_UPDATE_CURRENT
+                PendingIntent.FLAG_CANCEL_CURRENT
         )
         mBuilder.setContentIntent(resultPendingIntent)
 
