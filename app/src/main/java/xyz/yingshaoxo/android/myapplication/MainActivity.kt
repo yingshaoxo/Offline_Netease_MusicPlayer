@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         // get permission
         // import android.Manifest
         if (ContextCompat.checkSelfPermission(this,
@@ -47,9 +46,9 @@ class MainActivity : AppCompatActivity() {
         mp = GlobalVariable.mp
         mp.isLooping = false
 
-        mp.setOnCompletionListener({view ->
+        /*mp.setOnCompletionListener({view ->
             this@MainActivity.finish()
-        })
+        })*/
 
         imageButton.setOnClickListener {
             textView.text = path_list.random().toString()
@@ -82,12 +81,11 @@ class MainActivity : AppCompatActivity() {
                 .setContentTitle("Playing...")
                 .setContentText("Click here to the next song")
 
-
         var resultPendingIntent = PendingIntent.getActivity(
                 this,
                 0,
                 intent,
-                PendingIntent.FLAG_CANCEL_CURRENT
+                PendingIntent.FLAG_UPDATE_CURRENT
         )
         mBuilder.setContentIntent(resultPendingIntent)
 
