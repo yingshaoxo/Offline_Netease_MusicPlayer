@@ -15,6 +15,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.util.*
 import android.Manifest
+import android.widget.Toast
+import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         // get permission
         // import android.Manifest
