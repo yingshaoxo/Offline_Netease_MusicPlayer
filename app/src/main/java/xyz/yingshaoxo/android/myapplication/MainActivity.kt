@@ -15,8 +15,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import java.io.File
 import java.util.*
 import android.Manifest
-import android.widget.Toast
-import kotlin.system.exitProcess
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +34,7 @@ class MainActivity : AppCompatActivity() {
             ActivityCompat.requestPermissions(this,
                     arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 999)
 
+            super.onBackPressed()
             Thread.sleep(7 * 1000)
         }
 
