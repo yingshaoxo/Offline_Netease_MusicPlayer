@@ -22,6 +22,7 @@ class MyService : Service() {
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // Let it continue running until it is stopped.
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show()
+
         var path_name = Environment.getExternalStorageDirectory().toString() + "/netease/cloudmusic/Music"
         var path_sequence = File(path_name).walkTopDown().drop(1)
         var path_list = path_sequence.toList()
@@ -31,25 +32,21 @@ class MyService : Service() {
         //mp = GlobalVariable.mp
         mp.isLooping = false
 
-        /*mp.setOnCompletionListener({view ->
-            this@MainActivity.finish()
-        })*/
+        val file_name = path_list.random().toString()
 
-            val file_name = path_list.random().toString()
+        if (mp.isPlaying == false) {
+            mp.setDataSource(file_name)
+            mp.prepare()
+            mp.start()
 
-            if (mp.isPlaying == false) {
-                mp.setDataSource(file_name)
-                mp.prepare()
-                mp.start()
+        } else {
+            mp.stop()
+            mp.reset()
 
-            } else {
-                mp.stop()
-                mp.reset()
-
-                mp.setDataSource(file_name)
-                mp.prepare()
-                mp.start()
-            }
+            mp.setDataSource(file_name)
+            mp.prepare()
+            mp.start()
+        }
 
         return START_STICKY
     }
@@ -57,6 +54,7 @@ class MyService : Service() {
     override fun onDestroy() {
         super.onDestroy()
         Toast.makeText(this, "Service Destroyed", Toast.LENGTH_LONG).show()
+
         mp.stop()
         mp.release()
     }
