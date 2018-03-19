@@ -56,8 +56,8 @@ class MyService : Service() {
         super.onDestroy()
         Toast.makeText(this, "Service Destroyed", Toast.LENGTH_LONG).show()
 
-        //mp.stop()
-        //mp.release()
+        mp.stop()
+        mp.release()
     }
 }
 
