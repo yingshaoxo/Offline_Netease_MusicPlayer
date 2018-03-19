@@ -21,6 +21,7 @@ class MyService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         // Let it continue running until it is stopped.
+
         Toast.makeText(this, "Service Started", Toast.LENGTH_LONG).show()
 
         var path_name = Environment.getExternalStorageDirectory().toString() + "/netease/cloudmusic/Music"
@@ -55,8 +56,8 @@ class MyService : Service() {
         super.onDestroy()
         Toast.makeText(this, "Service Destroyed", Toast.LENGTH_LONG).show()
 
-        mp.stop()
-        mp.release()
+        //mp.stop()
+        //mp.release()
     }
 }
 

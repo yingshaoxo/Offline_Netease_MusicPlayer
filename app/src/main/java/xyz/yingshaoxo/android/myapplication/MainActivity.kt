@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
+        stopService(Layout)
         startService(Layout)
 
         minimize.setOnClickListener {
