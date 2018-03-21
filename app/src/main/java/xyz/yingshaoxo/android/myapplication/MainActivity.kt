@@ -55,6 +55,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onUserLeaveHint() {
+        super.onUserLeaveHint()
+
+        push_notification()
+        super.onBackPressed()
+    }
+
 
         // Method to start the service
     fun startService(view: View) {
