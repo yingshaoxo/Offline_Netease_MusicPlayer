@@ -31,16 +31,17 @@ class MyService : Service() {
 
         //mp = MediaPlayer()
         //mp = GlobalVariable.mp
-        mp.isLooping = false
 
         val file_name = path_list.random().toString()
 
-        if (mp.isPlaying == false) {
-            mp.setDataSource(file_name)
-            mp.prepare()
-            mp.start()
+        mp.setDataSource(file_name)
+        mp.prepare()
+        mp.start()
 
-        } else {
+
+        mp.setOnCompletionListener {
+            val file_name = path_list.random().toString()
+
             mp.stop()
             mp.reset()
 
