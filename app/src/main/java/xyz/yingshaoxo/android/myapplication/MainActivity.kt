@@ -44,6 +44,11 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
         }
 
+        next.setOnClickListener {
+            stopService(Layout)
+            startService(Layout)
+        }
+
         exit.setOnClickListener {
             stopService(Layout)
             finish()
